@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Models="clr-namespace:MAUIBindingTutorial.Models"
+             x:Class="MAUIBindingTutorial.MainPage">
+
+    <ContentPage.Resources>
+        <Models:Animal x:Key="animal"
+                       Name="capybara"
+                       Info="Capybara is a rodent"></Models:Animal>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <!--Example 1 with xaml cs file-->
+            <Label x:Name ="labelName"
+                Text=""
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Click me"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+            <!--Example 2-->
+            <Label x:Name ="labelName2"
+                   Text="{Binding Name,Source={StaticResource animal}}"
+                   FontSize="18"
+                   HorizontalOptions="Center" />
+
+            <!--Example 3 : Binding Context-->
+            <Label
+                Text="{Binding Name}"
+                FontSize="20"
+                HorizontalOptions="Center"/>
+            <Label
+                Text="{Binding Info}"
+                FontSize="20"
+                HorizontalOptions="Center"/>
+            <!--Example 3 : Binding Between Controls-->
+            <Slider x:Name="slider" Minimum="0" Maximum="50"/>
+            <Label
+                Text="{Binding Source={x:Reference slider}, Path=Value}"
+                FontSize="18"
+                HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
